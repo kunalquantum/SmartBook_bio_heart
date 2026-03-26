@@ -20,7 +20,7 @@ export const HEART_PARTS = [
     emissive: "#c0485a",
     position: [0.9, 0.55, 0.1],
     scale: [0.85, 0.7, 0.75],
-    shape: "sphere",
+    shape: "organic-chamber",
     function:
       "Receives deoxygenated blood returning from the body via the vena cavae and pumps it into the right ventricle.",
     location: "Upper-right chamber of the heart.",
@@ -35,7 +35,7 @@ export const HEART_PARTS = [
     emissive: "#a02040",
     position: [-0.85, 0.6, -0.1],
     scale: [0.8, 0.65, 0.7],
-    shape: "sphere",
+    shape: "organic-chamber",
     function:
       "Receives oxygenated blood from the pulmonary veins and passes it to the left ventricle.",
     location: "Upper-left chamber of the heart.",
@@ -50,7 +50,7 @@ export const HEART_PARTS = [
     emissive: "#b03050",
     position: [0.7, -0.35, 0.25],
     scale: [1.0, 0.9, 0.85],
-    shape: "cone-sphere",
+    shape: "organic-chamber",
     function:
       "Pumps deoxygenated blood to the lungs through the pulmonary artery for oxygenation.",
     location: "Lower-right chamber, beneath the right atrium.",
@@ -65,7 +65,7 @@ export const HEART_PARTS = [
     emissive: "#8c1030",
     position: [-0.65, -0.4, -0.15],
     scale: [0.95, 1.05, 0.9],
-    shape: "cone-sphere",
+    shape: "organic-chamber",
     function:
       "Pumps oxygenated blood to the entire body through the aorta. The main pumping chamber.",
     location: "Lower-left chamber, the largest and most muscular.",
@@ -82,7 +82,9 @@ export const HEART_PARTS = [
     emissive: "#b01010",
     position: [-0.3, 1.35, 0.1],
     scale: [0.35, 0.75, 0.35],
-    shape: "cylinder-arch",
+    rotation: [0, 0, Math.PI / 2.5], // Arch effect
+    shape: "lathe-vessel",
+    vesselSubtype: "aorta",
     function:
       "The largest artery in the body. Carries oxygen-rich blood from the left ventricle to all organs and tissues.",
     location: "Emerges from the top of the left ventricle and arches over the heart.",
@@ -97,7 +99,8 @@ export const HEART_PARTS = [
     emissive: "#2255aa",
     position: [0.35, 1.2, 0.35],
     scale: [0.32, 0.65, 0.32],
-    shape: "cylinder",
+    shape: "lathe-vessel",
+    vesselSubtype: "standard",
     function:
       "Carries deoxygenated blood from the right ventricle to the lungs to pick up oxygen.",
     location: "Exits from the top of the right ventricle, in front of the aorta.",
@@ -127,7 +130,9 @@ export const HEART_PARTS = [
     emissive: "#1133aa",
     position: [1.05, 0.95, 0.0],
     scale: [0.28, 0.65, 0.28],
-    shape: "cylinder",
+    rotation: [0, 0, -0.1],
+    shape: "lathe-vessel",
+    vesselSubtype: "vena-cava",
     function:
       "Returns deoxygenated blood from the upper body (head, arms, upper chest) to the right atrium.",
     location: "Enters the top of the right atrium from above.",
@@ -142,7 +147,8 @@ export const HEART_PARTS = [
     emissive: "#112299",
     position: [1.0, -0.55, 0.05],
     scale: [0.3, 0.6, 0.3],
-    shape: "cylinder",
+    shape: "lathe-vessel",
+    vesselSubtype: "vena-cava",
     function:
       "Returns deoxygenated blood from the lower body (abdomen, legs, pelvis) to the right atrium.",
     location: "Enters the bottom of the right atrium from below.",
@@ -158,7 +164,8 @@ export const HEART_PARTS = [
     color: "#e8c87a",
     emissive: "#c0a030",
     position: [0.82, 0.08, 0.18],
-    scale: [0.42, 0.15, 0.42],
+    scale: [0.65, 0.65, 0.65],
+    rotation: [Math.PI / 2, 0, 0.4],
     shape: "disc",
     function:
       "Controls blood flow from the right atrium to the right ventricle. Has three leaflets.",
@@ -173,7 +180,8 @@ export const HEART_PARTS = [
     color: "#d4b860",
     emissive: "#b09020",
     position: [-0.72, 0.05, -0.12],
-    scale: [0.38, 0.15, 0.38],
+    scale: [0.6, 0.6, 0.6],
+    rotation: [Math.PI / 2, 0, -0.3],
     shape: "disc",
     function:
       "Controls blood flow from the left atrium to the left ventricle. Has only two leaflets.",
@@ -188,7 +196,8 @@ export const HEART_PARTS = [
     color: "#e0d090",
     emissive: "#c0b050",
     position: [0.35, 0.75, 0.3],
-    scale: [0.28, 0.14, 0.28],
+    scale: [0.45, 0.45, 0.45],
+    rotation: [0, 0, 0],
     shape: "disc",
     function:
       "Prevents backflow of blood from the pulmonary artery into the right ventricle between heartbeats.",

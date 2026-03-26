@@ -5,10 +5,13 @@
 
 import { useRef, useEffect } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, Stars } from "@react-three/drei";
+import { OrbitControls, Environment, Stars, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { HEART_PARTS } from "../data/heartParts";
 import { HeartPart } from "./HeartPart";
+import { CoronaryArteries } from "./CoronaryArteries";
+import { BloodFlow } from "./BloodFlow";
+import { ChordaeTendineae } from "./ChordaeTendineae";
 
 // ── Camera animator ──────────────────────────────────────────
 function CameraAnimator({ target }) {
@@ -24,15 +27,22 @@ function CameraAnimator({ target }) {
   }, [target]);
 
   useFrame(() => {
-    if (!targetRef.current) return;
-    camera.position.lerp(
-      new THREE.Vector3(
-        targetRef.current.x * 0.6 + 3.5,
-        targetRef.current.y * 0.5 + 1.5,
-        targetRef.current.z * 0.5 + 4.5
-      ),
-      0.05
+    if (!targetRef.current) {
+      // Return to default view if no target
+      camera.position.lerp(new THREE.Vector3(0, 0.5, 7), 0.05);
+      camera.lookAt(0, 0, 0);
+      return;
+    }
+    
+    // Smoothly orbit to look at the part
+    const idealPos = new THREE.Vector3(
+      targetRef.current.x * 1.5 + 2,
+      targetRef.current.y * 1.2 + 1,
+      targetRef.current.z * 1.5 + 3.5
     );
+    
+    camera.position.lerp(idealPos, 0.06);
+    camera.lookAt(targetRef.current);
   });
 
   return null;
@@ -84,7 +94,19 @@ function SceneContent({
       <pointLight position={[0, -3, -3]} intensity={0.5} color="#4466bb" distance={8} />
 
       <HeartCore />
-      <Stars radius={30} depth={20} count={800} factor={2} saturation={0.3} fade />
+      <CoronaryArteries />
+      <BloodFlow />
+      <ChordaeTendineae />
+      <Stars radius={30} depth={20} count={1000} factor={4} saturation={0.5} fade />
+      <Environment preset="city" />
+      
+      <ContactShadows 
+        position={[0, -2, 0]} 
+        opacity={0.4} 
+        scale={10} 
+        blur={2.5} 
+        far={4} 
+      />
 
       {/* All 14 anatomical parts */}
       {HEART_PARTS.map((part) => (

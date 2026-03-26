@@ -203,12 +203,14 @@ p {
 /* ── Parts List (Left Panel) ─────────────────────────────────── */
 .parts-list {
   width: var(--panel-width);
-  background: var(--bg-panel);
+  background: rgba(11, 18, 32, 0.82);
+  backdrop-filter: blur(20px);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   z-index: 2;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 .parts-scroll {
@@ -357,12 +359,14 @@ p {
 /* ── Info Panel (Right) ─────────────────────────────────────── */
 .info-panel {
   width: var(--panel-width);
-  background: var(--bg-panel);
+  background: rgba(11, 18, 32, 0.82);
+  backdrop-filter: blur(20px);
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   z-index: 2;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 .info-empty {
